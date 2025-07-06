@@ -17,6 +17,11 @@
         {
             "name": "fire",
             "buildsystem": "cmake-ninja",
+            "build-options": {
+                "env": {
+                    "CPM_SOURCE_CACHE": "/run/build/fire/.cache/CPM"
+                }
+            },
             "config-opts": [
                 "-DCMAKE_AR=/usr/bin/gcc-ar",
                 "-DCMAKE_NM=/usr/bin/gcc-nm",
@@ -27,40 +32,38 @@
             "post-install": [
                 "install -d ${FLATPAK_DEST}/vst3",
                 "cp -r Fire_artefacts/Release/VST3/*.vst3 ${FLATPAK_DEST}/vst3",
+                "install -D Fire_artefacts/Release/CLAP/*.clap -t ${FLATPAK_DEST}/clap",
                 "strip ${FLATPAK_DEST}/vst3/*.vst3/Contents/*/*.so",
+                "strip ${FLATPAK_DEST}/clap/*.clap",
                 "install -Dm644 org.freedesktop.LinuxAudio.Plugins.Fire.metainfo.xml -t ${FLATPAK_DEST}/share/metainfo"
             ],
             "sources": [
                 {
                     "type": "git",
                     "url": "https://github.com/jerryuhoo/Fire.git",
-                    "tag": "v1.0.1",
-                    "commit": "75656d75e71f4232df420f4dbdbf295a6fc8f553",
-                    "disable-submodules": true
+                    "tag": "v1.0.2",
+                    "commit": "a0553c6fcced4919871771da3add390e931e29de"
                 },
                 {
-                    "type": "git",
-                    "url": "https://github.com/juce-framework/JUCE",
-                    "tag": "7.0.12",
-                    "commit": "4f43011b96eb0636104cb3e433894cda98243626",
-                    "dest": "JUCE"
-                },
-                {
-                    "type": "git",
-                    "url": "https://github.com/cameron314/readerwriterqueue",
-                    "tag": "v1.0.6",
-                    "dest": "readerwriterqueue"
+                    "type": "file",
+                    "url": "https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.40.2/CPM.cmake",
+                    "sha256": "c8cdc32c03816538ce22781ed72964dc864b2a34a310d3b7104812a5ca2d835d",
+                    "dest": ".cache/CPM/cpm",
+                    "dest-filename": "CPM_0.40.2.cmake"
                 },
                 {
                     "type": "git",
                     "url": "https://github.com/catchorg/Catch2.git",
-                    "tag": "v2.13.7",
-                    "dest": "Catch2"
+                    "tag": "v3.8.1",
+                    "dest": ".cache/CPM/catch2/6a2f3dacc2c2af350d0cc431777bb95acd772977"
                 },
                 {
                     "type": "patch",
+                    "options": [
+                        "-d",
+                        "cmake"
+                    ],
                     "paths": [
-                        "patches/fire-deps.patch",
                         "patches/fire-build.patch"
                     ]
                 },
