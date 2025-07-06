@@ -1,12 +1,101 @@
-diff --git a/CMakeLists.txt b/CMakeLists.txt
-index d641ad0..ec1f8e0 100644
---- a/CMakeLists.txt
-+++ b/CMakeLists.txt
-@@ -114,6 +114,7 @@ target_sources(Fire
-         Source/Panels/SpectrogramPanel/FreqTextLabel.cpp
-         Source/Panels/SpectrogramPanel/Multiband.cpp
-         Source/Panels/SpectrogramPanel/SoloButton.cpp
-+        Source/Panels/SpectrogramPanel/SpectrumBackground.cpp
-         Source/Panels/SpectrogramPanel/SpectrumComponent.cpp
-         Source/Panels/SpectrogramPanel/VerticalLine.cpp
-         Source/Panels/TopPanel/Preset.cpp
+diff --git a/Benchmarks.cmake b/Benchmarks.cmake
+index f9d7ee2..8a855a4 100644
+--- a/Benchmarks.cmake
++++ b/Benchmarks.cmake
+@@ -3,24 +3,24 @@ file(GLOB_RECURSE BenchmarkFiles CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/
+ # Organize the test source in the Tests/ folder in the IDE
+ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}/benchmarks PREFIX "" FILES ${BenchmarkFiles})
+ 
+-add_executable(Benchmarks ${BenchmarkFiles})
+-target_compile_features(Benchmarks PRIVATE cxx_std_20)
+-catch_discover_tests(Benchmarks)
++#add_executable(Benchmarks ${BenchmarkFiles})
++#target_compile_features(Benchmarks PRIVATE cxx_std_20)
++#catch_discover_tests(Benchmarks)
+ 
+ # Our benchmark executable also wants to know about our plugin code...
+-target_include_directories(Benchmarks PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Source)
++#target_include_directories(Benchmarks PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Source)
+ 
+ # Copy over compile definitions from our plugin target so it has all the JUCEy goodness
+-target_compile_definitions(Benchmarks PRIVATE $<TARGET_PROPERTY:${PROJECT_NAME},COMPILE_DEFINITIONS>)
++#target_compile_definitions(Benchmarks PRIVATE $<TARGET_PROPERTY:${PROJECT_NAME},COMPILE_DEFINITIONS>)
+ 
+ # And give tests access to our shared code
+-target_link_libraries(Benchmarks PRIVATE SharedCode Catch2::Catch2)
++#target_link_libraries(Benchmarks PRIVATE SharedCode Catch2::Catch2)
+ 
+ # Make an Xcode Scheme for the test executable so we can run tests in the IDE
+-set_target_properties(Benchmarks PROPERTIES XCODE_GENERATE_SCHEME ON)
++#set_target_properties(Benchmarks PROPERTIES XCODE_GENERATE_SCHEME ON)
+ 
+ # When running Tests we have specific needs
+-target_compile_definitions(Benchmarks PUBLIC
+-    JUCE_MODAL_LOOPS_PERMITTED=1 # let us run Message Manager in tests
+-    RUN_PAMPLEJUCE_TESTS=1 # also run tests in module .cpp files guarded by RUN_PAMPLEJUCE_TESTS
+-)
++#target_compile_definitions(Benchmarks PUBLIC
++#    JUCE_MODAL_LOOPS_PERMITTED=1 # let us run Message Manager in tests
++#    RUN_PAMPLEJUCE_TESTS=1 # also run tests in module .cpp files guarded by# RUN_PAMPLEJUCE_TESTS
++#)
+diff --git a/Tests.cmake b/Tests.cmake
+index 04d25da..3da02af 100644
+--- a/Tests.cmake
++++ b/Tests.cmake
+@@ -2,7 +2,7 @@
+ # include(CTest) could be used too, but adds additional targets we don't care about
+ # See: https://github.com/catchorg/Catch2/issues/2026
+ # You can also forgo ctest entirely and call ./Tests directly from the build dir
+-enable_testing()
++#enable_testing()
+ 
+ include (CPM)
+ 
+@@ -28,26 +28,26 @@ endif ()
+ CPMAddPackage("gh:catchorg/Catch2@3.8.1")
+ 
+ # Setup the test executable, again C++20 please
+-add_executable(Tests ${TestFiles})
+-target_compile_features(Tests PRIVATE cxx_std_20)
++#add_executable(Tests ${TestFiles})
++#target_compile_features(Tests PRIVATE cxx_std_20)
+ 
+ # Our test executable also wants to know about our plugin code...
+-target_include_directories(Tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Source)
++#target_include_directories(Tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/Source)
+ 
+ # Copy over compile definitions from our plugin target so it has all the JUCEy goodness
+-target_compile_definitions(Tests PRIVATE $<TARGET_PROPERTY:${PROJECT_NAME},COMPILE_DEFINITIONS>)
++#target_compile_definitions(Tests PRIVATE $<TARGET_PROPERTY:${PROJECT_NAME},COMPILE_DEFINITIONS>)
+ 
+ # And give tests access to our shared code
+-target_link_libraries(Tests PRIVATE SharedCode Catch2::Catch2)
++#target_link_libraries(Tests PRIVATE SharedCode Catch2::Catch2)
+ 
+ # Make an Xcode Scheme for the test executable so we can run tests in the IDE
+-set_target_properties(Tests PROPERTIES XCODE_GENERATE_SCHEME ON)
++#set_target_properties(Tests PROPERTIES XCODE_GENERATE_SCHEME ON)
+ 
+ # When running Tests we have specific needs
+-target_compile_definitions(Tests PUBLIC
+-    JUCE_MODAL_LOOPS_PERMITTED=1 # let us run Message Manager in tests
+-    RUN_PAMPLEJUCE_TESTS=1 # also run tests in other module .cpp files guarded by RUN_PAMPLEJUCE_TESTS
+-)
++#target_compile_definitions(Tests PUBLIC
++#    JUCE_MODAL_LOOPS_PERMITTED=1 # let us run Message Manager in tests
++#    RUN_PAMPLEJUCE_TESTS=1 # also run tests in other module .cpp files guarded by RUN_PAMPLEJUCE_TESTS
++#)
+ 
+ # Let our tests target know we are running in CI
+ if ((DEFINED ENV{CI}))
+@@ -57,8 +57,8 @@ endif ()
+ # Load and use the .cmake file provided by Catch2
+ # https://github.com/catchorg/Catch2/blob/devel/docs/cmake-integration.md
+ # We have to manually provide the source directory here for now
+-include(${Catch2_SOURCE_DIR}/extras/Catch.cmake)
++#include(${Catch2_SOURCE_DIR}/extras/Catch.cmake)
+ 
+ # ${DISCOVERY_MODE} set to "PRE_TEST" for MacOS arm64 / Xcode development
+ # fixes error when Xcode attempts to run test executable
+-catch_discover_tests(Tests ${DISCOVERY_MODE} "PRE_TEST")
++#catch_discover_tests(Tests ${DISCOVERY_MODE} "PRE_TEST")
