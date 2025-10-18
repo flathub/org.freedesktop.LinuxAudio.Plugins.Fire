@@ -41,8 +41,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/jerryuhoo/Fire.git",
-                    "tag": "v1.0.2",
-                    "commit": "a0553c6fcced4919871771da3add390e931e29de"
+                    "tag": "v1.5.0",
+                    "commit": "570304db2efc66f17468fac4547496fc6740738f"
                 },
                 {
                     "type": "file",
@@ -55,6 +55,7 @@
                     "type": "git",
                     "url": "https://github.com/catchorg/Catch2.git",
                     "tag": "v3.8.1",
+                    "commit": "2b60af89e23d28eefc081bc930831ee9d45ea58b",
                     "dest": ".cache/CPM/catch2/6a2f3dacc2c2af350d0cc431777bb95acd772977"
                 },
                 {

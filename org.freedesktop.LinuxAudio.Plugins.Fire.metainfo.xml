@@ -23,6 +23,16 @@
       </screenshot>
     </screenshots>
     <releases>
+      <release version="1.5.0" date="2025-10-17">
+        <url>https://github.com/jerryuhoo/Fire/releases/tag/v1.5.0</url>
+        <description>
+          <ul>
+            <li>New Feature: LFO Modulation System</li>
+            <li>Fixed a critical bug where the plugin might not load
+            presets correctly.</li>
+          </ul>
+        </description>
+      </release>
       <release version="1.0.2" date="2025-07-05">
         <url>https://github.com/jerryuhoo/Fire/releases/tag/v1.0.2</url>
         <description>
