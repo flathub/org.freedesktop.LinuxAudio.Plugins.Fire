@@ -41,8 +41,8 @@
                 {
                     "type": "git",
                     "url": "https://github.com/jerryuhoo/Fire.git",
-                    "tag": "v1.0.2",
-                    "commit": "a0553c6fcced4919871771da3add390e931e29de"
+                    "tag": "v1.5.0",
+                    "commit": "570304db2efc66f17468fac4547496fc6740738f"
                 },
                 {
                     "type": "file",
