@@ -1,10 +1,10 @@
 {
     "id": "org.freedesktop.LinuxAudio.Plugins.Fire",
     "runtime": "org.freedesktop.LinuxAudio.BaseExtension",
-    "sdk": "org.freedesktop.Sdk//25.08",
+    "sdk": "org.freedesktop.Sdk//26.08",
     "runtime-version": "stable",
     "build-extension": true,
-    "branch": "25.08",
+    "branch": "26.08",
     "build-options": {
         "prefix": "/app/extensions/Plugins/Fire"
     },
@@ -49,12 +49,14 @@
                     "type": "git",
                     "url": "https://github.com/cameron314/readerwriterqueue",
                     "tag": "v1.0.6",
+                    "commit": "8e7627d18c2108aca178888d88514179899a044f",
                     "dest": "readerwriterqueue"
                 },
                 {
                     "type": "git",
                     "url": "https://github.com/catchorg/Catch2.git",
                     "tag": "v2.13.7",
+                    "commit": "c4e3767e265808590986d5db6ca1b5532a7f3d13",
                     "dest": "Catch2"
                 },
                 {
