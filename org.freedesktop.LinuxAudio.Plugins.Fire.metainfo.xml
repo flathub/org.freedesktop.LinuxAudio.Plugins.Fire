@@ -23,6 +23,7 @@
       </screenshot>
     </screenshots>
     <releases>
+      <release version="2.0.0" date="2026-10-05" />
       <release version="1.5.0" date="2025-10-17">
         <url>https://github.com/jerryuhoo/Fire/releases/tag/v1.5.0</url>
         <description>
